@@ -10,4 +10,7 @@ pinned: false
 short_description: A basic chatbot powered by Groq.
 ---
 
-# End to End Basic Agentic AI Project
+# ChatEase: A End to End Basic Chatbot using Langgraph
+
+### 🚀 Live Demo  
+[Click here to try ChatEase](https://huggingface.co/spaces/Arjuna17/basic-chat-bot)
