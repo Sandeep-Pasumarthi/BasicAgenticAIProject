@@ -16,5 +16,5 @@ class GraphBuilder:
         return self._basic_graph_builder.compile()
     
     def get_usecase_graph(self, usecase: str):
-        if usecase == "Basic Chatbot":
+        if usecase == "Chatbot":
             return self._build_basic_chatbot()

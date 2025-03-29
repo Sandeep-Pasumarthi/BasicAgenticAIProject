@@ -1,22 +1,18 @@
-from configparser import ConfigParser
-
+import json
 import os
 
-CONFIG_PATH = os.path.join(os.getcwd(), "src", "basic", "ui", "config.ini")
+CONFIG_PATH = os.path.join(os.getcwd(), "src", "basic", "ui", "config.json")
 
 class Config:
     def __init__(self, config_file=CONFIG_PATH):
-        self.config = ConfigParser()
-        self.config.read(config_file)
+        with open(config_file, "r", encoding="utf-8") as file:
+            self.config = json.load(file)
     
-    def get_page_title(self):
-        return self.config["DEFAULT"].get("PAGE_TITLE")
-    
-    def get_llm_options(self):
-        return self.config["DEFAULT"].get("LLM_OPTIONS").split(", ")
-    
-    def get_usecase_options(self):
-        return self.config["DEFAULT"].get("USECASE_OPTIONS").split(", ")
-    
-    def get_groq_llm_options(self):
-        return self.config["DEFAULT"].get("GROQ_LLM_OPTIONS").split(", ")
+    def get_page_title(self) -> str:
+        return self.config.get("PAGE_TITLE", "")
+
+    def get_llms_details(self) -> dict:
+        return self.config.get("LLMS", {})
+
+    def get_usecase_options(self) -> list:
+        return self.config.get("USECASE_OPTIONS", {})

@@ -17,16 +17,27 @@ class LoadStreamLitUI:
         with st.sidebar:
             st.markdown("### 🛠️ Configure Your Assistant")
 
-            llm_options = self.config.get_llm_options()
-            self.user_controls["selected_llm"] = st.selectbox("Select LLM", llm_options)
+            llm_options = self.config.get_llms_details()
 
-            if self.user_controls["selected_llm"] == "Groq":
-                model_options = self.config.get_groq_llm_options()
-                self.user_controls["selected_model"] = st.selectbox("Select Model", model_options)
-                self.user_controls["GROQ_API_KEY"] = st.session_state["GROQ_API_KEY"] = st.text_input("API Key", type="password")
-                if not self.user_controls["GROQ_API_KEY"]:
-                    st.warning("⚠️ Enter your GROQ API key to continue. Visit: https://console.groq.com/keys")
+            llm_provider = self.user_controls["selected_llm_provider"] = st.selectbox("Select LLM", list(llm_options.keys()))
+            self.user_controls["enable_search"] = st.toggle("Enable Online Search", value=False)
             
+            if self.user_controls["selected_llm_provider"]:
+                if self.user_controls["enable_search"]:
+                    model_options = llm_options[llm_provider]["models_with_tools"]
+                else:
+                    model_options = llm_options[llm_provider]["models"]
+                
+                if model_options:
+                    self.user_controls["selected_model"] = st.selectbox("Select Model", model_options)
+                else:
+                    st.warning(f"No models available for {self.user_controls['selected_llm_provider']}")
+                
+                if llm_options[llm_provider]["is_api_key_required"]:
+                    self.user_controls[f"{llm_provider}_API_KEY"] = st.session_state[f"{llm_provider}_API_KEY"] = st.text_input(f"{llm_provider} API Key", type="password")
+                    if not self.user_controls[f"{llm_provider}_API_KEY"]:
+                        st.warning(f"⚠️ Enter your {llm_provider} API key to continue.")
+
             usecase_options = self.config.get_usecase_options()
             self.user_controls["selected_usecase"] = st.selectbox("Select Usecases", usecase_options)
     
