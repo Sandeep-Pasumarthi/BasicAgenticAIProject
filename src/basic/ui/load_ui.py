@@ -13,25 +13,6 @@ class LoadStreamLitUI:
             "selected_usecase": None
         }
     
-    def initialize_session(self) -> dict:
-        return {
-        "current_step": "requirements",
-        "requirements": "",
-        "user_stories": "",
-        "po_feedback": "",
-        "generated_code": "",
-        "review_feedback": "",
-        "decision": None
-    }
-
-    def _initialize_state(self) -> None:
-        st.session_state.update({
-            "timeframe": '',
-            "IsFetchButtonClicked": False,
-            "IsSDLC": False
-        })
-        st.session_state.setdefault("state", self.initialize_session())
-    
     def _setup_sidebar(self) -> None:
         with st.sidebar:
             st.markdown("### 🛠️ Configure Your Assistant")
@@ -53,5 +34,4 @@ class LoadStreamLitUI:
         st.set_page_config(page_title="🤖 " + self.config.get_page_title(), layout="wide")
         st.header("🤖 " + self.config.get_page_title())
         self._setup_sidebar()
-        self._initialize_state()
         return self.user_controls

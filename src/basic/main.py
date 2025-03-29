@@ -14,10 +14,7 @@ def load_ui():
         st.error("Error: Failed to load user input from the UI.")
         return
 
-    if st.session_state.IsFetchButtonClicked:
-        user_message = st.session_state.timeframe 
-    else :
-        user_message = st.chat_input("Enter your message:")
+    user_message = st.chat_input("Enter your message:")
     
     if user_message:
         llm = GroqLLM(user_controls=user_input)
