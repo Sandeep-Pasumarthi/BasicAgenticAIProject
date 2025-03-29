@@ -10,7 +10,8 @@ pinned: false
 short_description: A basic chatbot powered by Groq.
 ---
 
-# ChatEase: A End to End Basic Chatbot using Langgraph
+# ChatEase: An End to End Basic Chatbot using Langgraph
 
-### 🚀 Live Demo  
-[Click here to try ChatEase](https://huggingface.co/spaces/Arjuna17/basic-chat-bot)
+### 🚀 Live Demo @ [Click here to try ChatEase](https://huggingface.co/spaces/Arjuna17/basic-chat-bot)
+
+*If the above link doesn't work, try this:* [Alternative Link](https://arjuna17-chatease-basic-chatbot.streamlit.app/)
