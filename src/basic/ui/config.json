@@ -1,7 +1,7 @@
 {
     "PAGE_TITLE": "ChatEase: Your Friendly Conversation Partner",
     "LLMS": {
-        "Groq": {
+        "GROQ": {
             "models": [
                 "qwen-2.5-32b", 
                 "deepseek-r1-distill-qwen-32b", 
@@ -14,7 +14,7 @@
             ],
             "is_api_key_required": true
         },
-        "Open AI": {
+        "OPENAI": {
             "models": [
                 "gpt-4o",
                 "o3-mini"
@@ -26,5 +26,5 @@
             "is_api_key_required": true
         }
     },
-    "USECASE_OPTIONS": ["Chatbot"]
+    "USECASE_OPTIONS": ["Chatbot", "Chatbot with Tavily Search"]
 }

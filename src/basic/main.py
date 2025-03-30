@@ -1,6 +1,6 @@
 from src.basic.ui.load_ui import LoadStreamLitUI
 from src.basic.ui.results_ui import DisplayResultsStreamLitUI
-from src.basic.llms.groq import GroqLLM
+from src.basic.llms.llms import GetLLM
 from src.basic.graph.basic_graph_builder import GraphBuilder
 
 import streamlit as st
@@ -8,23 +8,23 @@ import streamlit as st
 
 def load_ui():
     ui = LoadStreamLitUI()
-    user_input = ui.render_ui()
+    user_controls = ui.render_ui()
 
-    if not user_input:
+    if not user_controls:
         st.error("Error: Failed to load user input from the UI.")
         return
 
     user_message = st.chat_input("Enter your message:")
     
     if user_message:
-        llm = GroqLLM(user_controls=user_input)
+        llm = GetLLM(user_controls=user_controls)
         llm = llm.get_llm()
 
         if not llm:
             st.error("Error: LLM model could not be initialized")
             return
         
-        usecase = user_input.get("selected_usecase")
+        usecase = user_controls.get("selected_usecase")
 
         if not usecase:
             st.error("Error: No usecase selected")

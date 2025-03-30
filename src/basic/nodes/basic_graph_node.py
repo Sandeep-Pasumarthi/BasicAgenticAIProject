@@ -6,4 +6,4 @@ class BasicGraphNode:
         self.model = model
     
     def process(self, state: BasicGraphState):
-        return {"messages": self.model.invoke(state['messages'])}
+        return {"messages": [self.model.invoke(state['messages'])]}
